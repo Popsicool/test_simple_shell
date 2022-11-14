@@ -1,11 +1,18 @@
 #include "shell.h"
 
-char* prompt(void)
+void prompt(void)
 {
-	size_t n = 10;
-	char * buffer;
-	buffer = malloc(sizeof(char) * n);
-	getline( &buffer, &n, stdin);
-/*	printf("printed %s to output which is %ld\n", buffer, n); */
-	return (buffer);
+	char *buffer = NULL;
+	size_t n;
+	int a;
+
+	write(1, "My shell : ", 11);
+	a = getline(&buffer, &n, stdin);
+
+	if (a == -1)
+	{
+		free(buffer);
+		exit(0);
+	}
+	tokenizer(buffer);
 }
