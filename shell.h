@@ -12,9 +12,11 @@
 extern char **environ;
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
-void prompt(void);
-void tokenizer(char *buffer);
-void exec(char **, char *);
-void find(char **, char *);
+void prompt(int);
+void tokenizer(char *buffer, int);
+void exec(char **, char *, int);
+void find(char **, char *, int);
+int _atoi(char *s);
+char *_strcat(char *dest, char *src);
 
 #endif

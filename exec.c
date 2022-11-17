@@ -1,6 +1,6 @@
 #include "shell.h"
 
-void exec(char **argv, char *copy)
+void exec(char **argv, char *copy, int state)
 {
     if (fork() == 0)
     {
@@ -12,6 +12,8 @@ void exec(char **argv, char *copy)
         wait(NULL);
         free(copy);
         free(argv);
-        prompt();
+        if (state == 2)
+			exit(1);
+        prompt(1);
     }
 }

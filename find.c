@@ -1,11 +1,22 @@
 #include "shell.h"
 
-void find(char **argv,char *copy)
+void find(char **argv,char *copy, int state)
 {
 	int i = 0;
-	char *token = NULL, *key = "PATH", *path = NULL;
+	char *token = NULL, *key = "PATH", *path = NULL, *msg=": not found\n", *emsg;
 	char **env_cpy;
 	struct stat st;
+	int error;
+
+	if(strcmp(argv[0],"exit") == 0)
+	{
+		if (argv[1])
+		{
+		error = _atoi(argv[1]);
+		exit(error);
+		}
+		exit(0);
+	}
 
 	while (environ[i])
 		i++;
@@ -32,14 +43,16 @@ void find(char **argv,char *copy)
 		if (stat(path, &st) == 0)
 		{
 			argv[0] = strdup(path);
-			exec(argv, copy);
+			exec(argv, copy, state);
 		}
 		token = strtok(NULL, ":");
 	}
-	perror("command not found");
+	emsg = _strcat(argv[0], msg);
+	write(1, emsg, _strlen(emsg));
+
     free(copy);
     free(env_cpy);
     free(path);
-	prompt();
+	prompt(1);
 }
 

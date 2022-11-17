@@ -1,6 +1,6 @@
 #include "shell.h"
 
-void tokenizer(char *buffer)
+void tokenizer(char *buffer, int state)
 {
 	char *copy = NULL,  *token = NULL;
 	char **argv = NULL;
@@ -40,7 +40,9 @@ void tokenizer(char *buffer)
 	free(buffer);
 
 	if(argv[0][0] == '/' && stat(copy, &st) == 0)
-		exec(argv, copy);
+	{
+		exec(argv, copy, state);
+	}
 
-	find(argv, copy);
+	find(argv, copy, state);
 }
