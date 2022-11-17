@@ -1,19 +1,20 @@
 #include "shell.h"
 
+/**
+ * prompt - prompt the user for input
+ * @state: check the state
+ * Return: none
+ */
 void prompt(int state)
 {
 	char *buffer = NULL;
-	size_t n;
-	int a;
 
 	if (state == 1)
 		write(1, "My shell : ", 11);
-	a = getline(&buffer, &n, stdin);
-	if (a == -1)
-	{
-		free(buffer);
-		exit(0);
-	}
+
+
+	buffer = _getline();
+
 	if (state == 1)
 		tokenizer(buffer, 1);
 	else

@@ -8,15 +8,16 @@
 
 char *_strcpy(char *dest, char *src)
 {
-    int i;
-    i = 0;
-    while (src[i] != '\0')
-    {
-        dest[i] = src[i];
-        i++;
-    }
-    dest[i] = '\0';
-    return (dest);
+	int i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+	dest[i] = src[i];
+	i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 /**
@@ -27,15 +28,20 @@ char *_strcpy(char *dest, char *src)
  */
 int _strlen(char *s)
 {
-    int a = 0;
-    while (s[a] != '\0')
-    {
-        a++;
-    }
-    return (a);
+	int a = 0;
+
+	while (s[a] != '\0')
+	{
+		a++;
+	}
+	return (a);
 }
 
-
+/**
+ * _atoi - convert string to curr int value
+ * @s: string to convert
+ * Return: converted int value
+ */
 int _atoi(char *s)
 {
 	int i, sign = 1, flag = 0, output;
@@ -65,7 +71,12 @@ int _atoi(char *s)
 }
 
 
-
+/**
+ * _strcat - concatenate two strings
+ * @dest: destination
+ * @src: source
+ * Return: pointer to destination
+ */
 
 char *_strcat(char *dest, char *src)
 {

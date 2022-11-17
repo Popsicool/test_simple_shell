@@ -9,7 +9,9 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
+
 extern char **environ;
+char *_getline();
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
 void prompt(int);

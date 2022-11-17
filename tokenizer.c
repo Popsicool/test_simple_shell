@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * tokenizer - tokenize the buffer
+ * @buffer: input from user
+ * @state: use to track state
+ * Return: void
+ */
 void tokenizer(char *buffer, int state)
 {
 	char *copy = NULL,  *token = NULL;
@@ -7,7 +13,6 @@ void tokenizer(char *buffer, int state)
 	struct stat st;
 	int argc = 0, i = 0;
 
-	
 	copy = malloc(sizeof(char) * _strlen(buffer));
 	if (copy == NULL)
 	{
@@ -35,11 +40,9 @@ void tokenizer(char *buffer, int state)
 		token = strtok(NULL, " \n");
 		i++;
 	}
-	
 	argv[i] = NULL;
 	free(buffer);
-
-	if(argv[0][0] == '/' && stat(copy, &st) == 0)
+	if (argv[0][0] == '/' && stat(copy, &st) == 0)
 	{
 		exec(argv, copy, state);
 	}
